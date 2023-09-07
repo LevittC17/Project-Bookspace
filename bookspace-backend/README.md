@@ -12,5 +12,5 @@
 5. Install the dependencies using `pip install -r bookspace-backend/requirements.txt`.
 6. Run migrations using `python manage.py migrate`.
 7. Start the development server using `python manage.py runserver`.
-8. Run the `python manage.py createsuperuser` and create a superuser of you own liking, you can delete the database in
-or use the username (peterevance) and password (qq) for the database you find in this repository.
+8. The username (Bookspace) and password (Bookspace123) for the database you find in this repository. The auth token is
+   (93549acddc4aeef0d161f1f456b2da108020a811)
