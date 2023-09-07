@@ -6,10 +6,16 @@ class Author(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+
 
 class BookTag(models.Model):
-    name = models.CharField(choices=BookTagChoices.choices, max_length=15)
+    name = models.CharField(choices=BookTagChoices.choices, max_length=16)
     description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Book(models.Model):
