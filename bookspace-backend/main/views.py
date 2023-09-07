@@ -73,16 +73,16 @@ class BookImageViewSet(viewsets.ModelViewSet):
     queryset = BookImage.objects.all()
     serializer_class = BookImageSerializer
 
-    # def get_permissions(self):
-    #     if self.action == "create":
-    #         permission_classes = [CanAddBookImage]
-    #     elif self.action == "destroy":
-    #         permission_classes = [CanDeleteBookImage]
-    #     elif self.action in ["update", "partial_update"]:
-    #         permission_classes = [CanUpdateBookImage]
-    #     else:
-    #         permission_classes = [AllowAny]
-    #     return [permission() for permission in permission_classes]
+    def get_permissions(self):
+        if self.action == "create":
+            permission_classes = [CanAddBookImage]
+        elif self.action == "destroy":
+            permission_classes = [CanDeleteBookImage]
+        elif self.action in ["update", "partial_update"]:
+            permission_classes = [CanUpdateBookImage]
+        else:
+            permission_classes = [AllowAny]
+        return [permission() for permission in permission_classes]
 
 
 class BookViewSet(viewsets.ModelViewSet):
