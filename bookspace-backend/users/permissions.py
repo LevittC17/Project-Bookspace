@@ -1,6 +1,7 @@
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import BasePermission
 
+
 class IsBookspaceOwner(BasePermission):
     """
     Custom permission class that allows only bookspace owners to perform an action.
@@ -57,8 +58,9 @@ class IsAssistantBookspaceManager(BasePermission):
 
     def has_permission(self, request, view):
         # Check if the current user is an assistant bookspace manager
-        if request.user.is_authenticated and (request.user.is_assistant_bookspace_manager or request.user.is_bookspace_manager
-                                              or request.user.is_bookspace_owner):
+        if request.user.is_authenticated and (
+                request.user.is_assistant_bookspace_manager or request.user.is_bookspace_manager
+                or request.user.is_bookspace_owner):
             return True
         raise PermissionDenied(self.message)
 

@@ -4,6 +4,7 @@ from phonenumber_field.serializerfields import PhoneNumberField
 
 User = get_user_model()
 
+
 class CustomUserCreateSerializer(UserCreateSerializer):
     """
     Custom serializer for creating user instances with additional fields.
