@@ -1,19 +1,30 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from main.models import BookImage
+from main.models import *
 from PIL import Image
+import os
+from django.conf import settings
 
 
-# @receiver(post_save, sender=BookImage)
-# def generate_thumbnail(sender, instance, **kwargs):
-#     if not instance.thumbnail:
-#         # Open the uploaded image using Pillow
-#         image = Image.open(instance.cover_image.path)
-#
-#         # Resize the image to create the thumbnail
-#         thumb_size = (100, 100)  # Adjust the size as needed
-#         image.thumbnail(thumb_size)
-#
-#         # Save the thumbnail with a filename like "<book_name>-thumbnail.jpg"
-#         thumbnail_filename = f"{instance.book.name}-thumbnail.jpg"
-#         instance.thumbnail.save(thumbnail_filename, image)
+@receiver(post_save, sender=BookImage)
+def generate_thumbnail(sender, instance, **kwargs):
+    if instance.cover_image and not instance.thumbnail:
+        try:
+            img = Image.open(instance.cover_image.path)
+
+            thumbnail_size = (100, 100)
+            img.thumbnail(thumbnail_size)
+
+            book_name = instance.book.name.replace(" ", "-")
+
+            thumbnail_filename = f"{book_name}-thumbnail.png"
+
+            thumbnail_path = os.path.join(settings.MEDIA_ROOT, "book-thumbnails", thumbnail_filename)
+            img.save(thumbnail_path, "PNG")
+
+            # Update the thumbnail field in the model with the relative path inside the MEDIA_URL
+            instance.thumbnail.name = os.path.join("book-thumbnails", thumbnail_filename)
+            instance.save()
+        except Exception as error:
+
+            print(f"Thumbnail generation failed: {error}")
