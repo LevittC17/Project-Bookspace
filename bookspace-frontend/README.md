@@ -1,8 +1,9 @@
 # React + Vite
 
-![github commit]()
-![github requests]()
-![github counter]()
+![GitHub top language](https://img.shields.io/github/languages/top/LevittC17/Project-Bookspace/bookspace-frontend)
+![GitHub last commit](https://img.shields.io/github/last-commit/LevittC17/Project-Bookspace/bookspace-frontend)
+![GitHub repo size](https://img.shields.io/github/repo-size/LevittC17/Project-Bookspace/bookspace-frontend)
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
