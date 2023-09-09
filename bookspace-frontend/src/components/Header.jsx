@@ -21,7 +21,7 @@ const Header = () => {
         setSearchResults([]) // clear results if empty input
       }
     } catch (error) {
-      console.log('Error fetching results', error)
+      console.error('Error fetching results', error)
     }
   }
 
